@@ -95,53 +95,53 @@ The package provides several methods to create and work with vectors.
 
 ## Vector Usage
 ```Go
-	    // Initializing a new vector with 3 dimensions
-			v1 := vector.NewVectorWithDimensions(3)
-			fmt.Println(v1.Print()) // prints: [0.00, 0.00, 0.00]
+  // Initializing a new vector with 3 dimensions
+  v1 := vector.NewVectorWithDimensions(3)
+  fmt.Println(v1.Print()) // prints: [0.00, 0.00, 0.00]
 		
-			// Set dimensions and values
-			v1.SetDim(5)
-			fmt.Println(v1.Print()) // prints: [0.00, 0.00, 0.00, 0.00, 0.00]
+  // Set dimensions and values
+  v1.SetDim(5)
+  fmt.Println(v1.Print()) // prints: [0.00, 0.00, 0.00, 0.00, 0.00]
 		
-			// Initializing a new vector with input data
-			v2 := vector.NewVectorWithInputData([]float64{1, 2, 3, 4, 5})
-			fmt.Println(v2.Print()) // prints: [1.00, 2.00, 3.00, 4.00, 5.00]
+  // Initializing a new vector with input data
+  v2 := vector.NewVectorWithInputData([]float64{1, 2, 3, 4, 5})
+  fmt.Println(v2.Print()) // prints: [1.00, 2.00, 3.00, 4.00, 5.00]
+
+  // Get number of dimensions
+  fmt.Println(v2.GetNumDims()) // prints: 5
 		
-			// Get number of dimensions
-			fmt.Println(v2.GetNumDims()) // prints: 5
+  // Get element at index
+  fmt.Println(v2.GetElement(2)) // prints: 3.00
 		
-			// Get element at index
-			fmt.Println(v2.GetElement(2)) // prints: 3.00
-		
-			// Compute Euclidean norm
-			fmt.Println(v2.EuclideanNorm()) // prints: 7.42
+  // Compute Euclidean norm
+  fmt.Println(v2.EuclideanNorm()) // prints: 7.42
 			
-			// Create a normalized copy
-			v3 := v2.NormalizedCopyVector()
-			fmt.Println(v3.Print()) // prints: [0.13, 0.27, 0.40, 0.53, 0.67]
-		
-			// Normalize the original vector
-			v2.NormalizeVector()
-			fmt.Println(v2.Print()) // prints: [0.13, 0.27, 0.40, 0.53, 0.67]
+  // Create a normalized copy
+  v3 := v2.NormalizedCopyVector()
+  fmt.Println(v3.Print()) // prints: [0.13, 0.27, 0.40, 0.53, 0.67]
+
+  // Normalize the original vector
+  v2.NormalizeVector()
+  fmt.Println(v2.Print()) // prints: [0.13, 0.27, 0.40, 0.53, 0.67]
 			
-			// Add two vectors
-			v4 := vector.NewVectorWithInputData([]float64{1, 1, 1, 1, 1})
-			v5 := v2.Add(v4)
-			fmt.Println(v5.Print()) // prints: [1.13, 1.27, 1.40, 1.53, 1.67]
+  // Add two vectors
+  v4 := vector.NewVectorWithInputData([]float64{1, 1, 1, 1, 1})
+  v5 := v2.Add(v4)
+  fmt.Println(v5.Print()) // prints: [1.13, 1.27, 1.40, 1.53, 1.67]
 		
-			// Subtract two vectors
-			v6 := v5.Subtract(v4)
-			fmt.Println(v6.Print()) // prints: [0.13, 0.27, 0.40, 0.53, 0.67]
+  // Subtract two vectors
+  v6 := v5.Subtract(v4)
+  fmt.Println(v6.Print()) // prints: [0.13, 0.27, 0.40, 0.53, 0.67]
 		
-			// Compute dot product
-			dot := vector.DotProduct(v4, v5)
-			fmt.Println(dot) // prints: 6.00
-		
-			// Compute cross product (only applicable for 3D vectors)
-			v7 := vector.NewVectorWithInputData([]float64{1, 2, 3})
-			v8 := vector.NewVectorWithInputData([]float64{4, 5, 6})
-			v9 := vector.CrossProduct(v7, v8)
-			fmt.Println(v9.Print()) // prints: [-3.00, 6.00, -3.00]
+  // Compute dot product
+  dot := vector.DotProduct(v4, v5)
+  fmt.Println(dot) // prints: 6.00
+
+  // Compute cross product (only applicable for 3D vectors)
+  v7 := vector.NewVectorWithInputData([]float64{1, 2, 3})
+  v8 := vector.NewVectorWithInputData([]float64{4, 5, 6})
+  v9 := vector.CrossProduct(v7, v8)
+  fmt.Println(v9.Print()) // prints: [-3.00, 6.00, -3.00]
 ```
 
 # Matrix
@@ -199,11 +199,11 @@ You can create a new matrix using one of the following constructors:
 ##  Matrix Usage
 ```go
   // Create Matrix with determined size
-	m := matrix.NewMatrixWithSize(2, 2)
+  m := matrix.NewMatrixWithSize(2, 2)
 	
   // Seting Element
   m.SetElement(0, 0, 1.0)
-	m.MatrixPrint()
+  m.MatrixPrint()
 
   // Getting Element
   fmt.Println(m.GetElement(0, 0))
@@ -211,11 +211,11 @@ You can create a new matrix using one of the following constructors:
 
   // Performing Matrix Addition
   m1 := matrix.NewMatrixWithSize(2, 2)
-	m2 := matrix.NewMatrixWithSize(2, 2)
-	m1.SetElement(0, 0, 1.0)
-	m2.SetElement(0, 0, 2.0)
-	m3, _ := m1.MatrixSum(m2)
-	m3.MatrixPrint()
+  m2 := matrix.NewMatrixWithSize(2, 2)
+  m1.SetElement(0, 0, 1.0)
+  m2.SetElement(0, 0, 2.0)
+  m3, _ := m1.MatrixSum(m2)
+  m3.MatrixPrint()
 
 
   // Matrix Multiplication
@@ -223,25 +223,25 @@ You can create a new matrix using one of the following constructors:
 
   // Calculating Determinant
   m4 := matrix.NewMatrixWithSize(2, 2)
-	m4.SetElement(0, 0, 1.0)
-	m4.SetElement(0, 1, 2.0)
-	m4.SetElement(1, 0, 3.0)
-	m4.SetElement(1, 1, 4.0)
-	det, _ := m4.Determinant()
+  m4.SetElement(0, 0, 1.0)
+  m4.SetElement(0, 1, 2.0)
+  m4.SetElement(1, 0, 3.0)
+  m4.SetElement(1, 1, 4.0)
+  det, _ := m4.Determinant()
   fmt.Prinln(det)
 
   m5 := matrix.NewMatrixWithSize(2, 2)
-	m6 := matrix.NewMatrixWithSize(2, 2)
-	m5.SetElement(0, 0, 1.0)
-	m5.SetElement(0, 1, 2.0)
-	m5.SetElement(1, 0, 3.0)
-	m5.SetElement(1, 1, 4.0)
-	m6.SetElement(0, 0, 5.0)
-	m6.SetElement(0, 1, 6.0)
-	m6.SetElement(1, 0, 7.0)
-	m6.SetElement(1, 1, 8.0)
-	result, _ := m5.HadamardProduct(m6)
-	fmt.Println(result)
+  m6 := matrix.NewMatrixWithSize(2, 2)
+  m5.SetElement(0, 0, 1.0)
+  m5.SetElement(0, 1, 2.0)
+  m5.SetElement(1, 0, 3.0)
+  m5.SetElement(1, 1, 4.0)
+  m6.SetElement(0, 0, 5.0)
+  m6.SetElement(0, 1, 6.0)
+  m6.SetElement(1, 0, 7.0)
+  m6.SetElement(1, 1, 8.0)
+  result, _ := m5.HadamardProduct(m6)
+  fmt.Println(result)
 
 ``` 
 ## Contributing
