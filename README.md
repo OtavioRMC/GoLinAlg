@@ -42,8 +42,8 @@ To add Go Linear Algebra into your projects you can:
 package main
 
 import (
-  "github.com/yourusername/GoLinAlg/Vector"
-  "github.com/yourusername/GoLinAlg/Matrix"
+  "github.com/OtavioRMC/GoLinAlg/Vector"
+  "github.com/OtavioRMC/GoLinAlg/Matrix"
 )
 ``` 
 
