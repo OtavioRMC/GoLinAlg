@@ -7,8 +7,8 @@ import (
 
 
 type Vector struct {
-	vector_data []float64
-	Dimension   int
+	vectorData []float64
+	dimension   int
 }
 
 
@@ -18,17 +18,17 @@ func NewVector() *Vector {
 
 
 func NewVectorWithDimensions(numDims int) *Vector {
-	return &Vector{vector_data: make([]float64, numDims), Dimension: numDims}
+	return &Vector{vectorData: make([]float64, numDims), dimension: numDims}
 }
 
 
 func NewVectorWithInputData(inputData []float64) *Vector {
-	return &Vector{vector_data: inputData, Dimension: len(inputData)}
+	return &Vector{vectorData: inputData, dimension: len(inputData)}
 }
 
 
 func (v *Vector) GetNumDims() int {
-	return v.Dimension
+	return v.dimension
 }
 
 
@@ -38,18 +38,18 @@ func (v *Vector) SetDim(numDims int) {
 		return
 	}
 	
-	v.Dimension = numDims
-	v.vector_data = make([]float64, numDims)
+	v.dimension = numDims
+	v.vectorData = make([]float64, numDims)
 }
 
 
 func (v *Vector) GetElement(index int) float64 {
 	
-	if index < 0 || index >= v.Dimension {
+	if index < 0 || index >= v.dimension {
 		return 0
 	}
 	
-	return v.vector_data[index]
+	return v.vectorData[index]
 
 }
 
@@ -57,7 +57,7 @@ func (v *Vector) EuclideanNorm() float64 {
 	
 	sum := 0.0
 	
-	for _, val := range v.vector_data {
+	for _, val := range v.vectorData {
 		sum += val * val
 	}
 	
@@ -74,13 +74,13 @@ func (v *Vector) NormalizedCopyVector() *Vector {
 		return &Vector{}
 	}
 
-	normalizedData := make([]float64, v.Dimension)
+	normalizedData := make([]float64, v.dimension)
 	
-	for i,val := range v.vector_data {
+	for i,val := range v.vectorData {
 		normalizedData[i] = val / norm
 	}
 
-	return &Vector{vector_data: normalizedData, Dimension: v.Dimension}
+	return &Vector{vectorData: normalizedData, dimension: v.dimension}
 
 }
 
@@ -90,8 +90,8 @@ func (v *Vector) NormalizeVector() {
 
 	if norm != 0 {
 		
-		for i, val := range v.vector_data {
-			v.vector_data[i] = val / norm
+		for i, val := range v.vectorData {
+			v.vectorData[i] = val / norm
 		}
 	
 	}
@@ -99,48 +99,48 @@ func (v *Vector) NormalizeVector() {
 
 func (v *Vector) Add(vectorA *Vector) *Vector {
 	
-	if v.Dimension != vectorA.Dimension {
+	if v.dimension != vectorA.dimension {
 		return &Vector{}
 	}
 	
-	resultVector := make([]float64, v.Dimension)
+	resultVector := make([]float64, v.dimension)
 	
-	for i := 0; i < v.Dimension; i++ {
-		resultVector[i] = v.vector_data[i] + vectorA.vector_data[i]
+	for i := 0; i < v.dimension; i++ {
+		resultVector[i] = v.vectorData[i] + vectorA.vectorData[i]
 	}
 	
-	return &Vector{vector_data: resultVector, Dimension: v.Dimension}
+	return &Vector{vectorData: resultVector, dimension: v.dimension}
 
 }
 
 func (v *Vector) Subtract(vectorB *Vector) *Vector {
 	
-	if v.Dimension != vectorB.Dimension {
+	if v.dimension != vectorB.dimension {
 		return &Vector{}
 	}
 	
-	resultVector := make([]float64, v.Dimension)
+	resultVector := make([]float64, v.dimension)
 	
-	for i := 0; i < v.Dimension; i++ {
+	for i := 0; i < v.dimension; i++ {
 	
-		resultVector[i] = v.vector_data[i] - vectorB.vector_data[i]
+		resultVector[i] = v.vectorData[i] - vectorB.vectorData[i]
 	
 	}
 	
-	return &Vector{vector_data: resultVector, Dimension: v.Dimension}
+	return &Vector{vectorData: resultVector, dimension: v.dimension}
 }
 
 func DotProduct(vectorA, vectorB *Vector) float64 {
 	
-	if vectorA.Dimension != vectorB.Dimension {
+	if vectorA.dimension != vectorB.dimension {
 		return 0.0
 	}
 	
 	dotProduct := 0.0
 	
-	for i := 0; i < vectorA.Dimension; i++ {
+	for i := 0; i < vectorA.dimension; i++ {
 	
-		dotProduct += vectorA.vector_data[i] * vectorB.vector_data[i]
+		dotProduct += vectorA.vectorData[i] * vectorB.vectorData[i]
 	
 	}
 	return dotProduct
@@ -148,20 +148,20 @@ func DotProduct(vectorA, vectorB *Vector) float64 {
 
 func CrossProduct(vectorA, vectorB *Vector) *Vector {
 	
-	if vectorA.Dimension != 3 || vectorB.Dimension != 3 {
+	if vectorA.dimension != 3 || vectorB.dimension != 3 {
 		return &Vector{}
 	
 	}
 	
 	resultVector := []float64{
 		
-		vectorA.vector_data[1]*vectorB.vector_data[2] - vectorA.vector_data[2]*vectorB.vector_data[1],
-		vectorA.vector_data[2]*vectorB.vector_data[0] - vectorA.vector_data[0]*vectorB.vector_data[2],
-		vectorA.vector_data[0]*vectorB.vector_data[1] - vectorA.vector_data[1]*vectorB.vector_data[0],
+		vectorA.vectorData[1]*vectorB.vectorData[2] - vectorA.vectorData[2]*vectorB.vectorData[1],
+		vectorA.vectorData[2]*vectorB.vectorData[0] - vectorA.vectorData[0]*vectorB.vectorData[2],
+		vectorA.vectorData[0]*vectorB.vectorData[1] - vectorA.vectorData[1]*vectorB.vectorData[0],
 	
 	}
 	
-	return &Vector{vector_data: resultVector, Dimension: 3}
+	return &Vector{vectorData: resultVector, dimension: 3}
 
 }
 
@@ -170,10 +170,10 @@ func (v *Vector) Print() string {
 	
 	str := "["
 	
-	for i, val := range v.vector_data {
+	for i, val := range v.vectorData {
 	
 		str += fmt.Sprintf("%.2f", val)
-		if i < v.Dimension-1 {
+		if i < v.dimension-1 {
 			str += ", "
 		}
 	
@@ -184,7 +184,7 @@ func (v *Vector) Print() string {
 
 func (v *Vector) SetData(data []float64) {
 
-	v.vector_data = data
-	v.Dimension = len(data)
+	v.vectorData = data
+	v.dimension = len(data)
 
 }
